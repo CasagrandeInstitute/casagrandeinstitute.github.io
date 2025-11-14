@@ -1,0 +1,14 @@
+---
+title: "Insights"
+listing:
+  contents: posts
+  type: default
+  sort: "date desc"
+  feed: true
+---
+
+# Insights
+
+Reflections and resources on compensation, program mix, and leadership effectiveness in higher education.
+
+Below you will find recent posts.

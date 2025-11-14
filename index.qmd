@@ -1,0 +1,85 @@
+---
+title: "Realizing mission through enhanced effectiveness"
+page-layout: full
+---
+
+<div class="hero">
+
+<div class="hero-text">
+<h1>Casagrande Institute for Higher Education Effectiveness</h1>
+
+<p class="lead">
+We help mission-driven colleges and universities align compensation, programs, and leadership practice with long-term sustainability.
+</p>
+
+<p>
+From faculty and staff compensation to academic program mix analysis and board effectiveness, we support presidents, chief academic officers, and finance leaders who want both financial discipline and a thriving liberal arts mission.
+</p>
+
+<p>
+<a class="btn-primary" href="services.html">Explore our services</a>
+<a class="btn-secondary" href="contact.html">Start a conversation</a>
+</p>
+</div>
+
+</div>
+
+## What we do
+
+<div class="pill-grid">
+
+<div class="pill">
+<h3>Compensation effectiveness</h3>
+<p>Design fair, competitive, and sustainable compensation structures for executives, faculty, and staff that reflect institutional values and market realities.</p>
+</div>
+
+<div class="pill">
+<h3>Academic program mix analysis</h3>
+<p>Provide program-level margin and demand context so leaders can make informed choices about investment, maintenance, and teach-out.</p>
+</div>
+
+<div class="pill">
+<h3>Leadership and governance</h3>
+<p>Support boards and senior leaders in clarifying roles, strengthening evaluation processes, and aligning decisions with mission and means.</p>
+</div>
+
+</div>
+
+## Trusted by mission-driven institutions
+
+::: {=html}
+<div class="client-carousel">
+  <div class="carousel-track">
+    <img src="images/logos/berea.svg" alt="Berea College">
+    <img src="images/logos/landmark.svg" alt="Landmark College">
+    <img src="images/logos/ndmu.svg" alt="Notre Dame of Maryland University">
+    <img src="images/logos/vanguard.svg" alt="Vanguard University">
+    <!-- duplicate sequence for continuous scroll -->
+    <img src="images/logos/berea.svg" alt="">
+    <img src="images/logos/landmark.svg" alt="">
+    <img src="images/logos/ndmu.svg" alt="">
+    <img src="images/logos/vanguard.svg" alt="">
+  </div>
+</div>
+:::
+
+*Logos for illustration only. Add or adjust to reflect current clients and partners.*
+
+## How we work
+
+1. **Clarify goals and constraints**  
+   Understand mission, context, and non-negotiables.
+
+2. **Use transparent, data-informed methods**  
+   Blend quantitative evidence, comparative benchmarks, and stakeholder input.
+
+3. **Co-design practical frameworks**  
+   Create structures and tools that leaders, faculty, and staff can understand and explain.
+
+4. **Build internal capacity**  
+   Leave behind models, documentation, and processes that your team can maintain.
+
+---
+
+Ready to talk about a project, RFP, or early-stage idea?  
+Visit the [Contact](contact.html) page to reach us.

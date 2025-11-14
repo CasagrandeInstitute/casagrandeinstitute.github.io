@@ -1,0 +1,117 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Hero */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3rem 0;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 44rem;
+}
+
+.hero-text h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text .lead {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  margin-right: 0.75rem;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: #002b49; /* navy */
+  color: #ffffff;
+}
+
+.btn-secondary {
+  border: 1px solid #002b49;
+  color: #002b49;
+  background-color: #ffffff;
+}
+
+/* Pill grid */
+
+.pill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.pill {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+  background-color: #ffffff;
+}
+
+/* Client logo carousel */
+
+.client-carousel {
+  overflow: hidden;
+  padding: 1.5rem 0;
+}
+
+.client-carousel .carousel-track {
+  display: inline-flex;
+  gap: 3rem;
+  align-items: center;
+  animation: client-scroll 30s linear infinite;
+}
+
+.client-carousel img {
+  max-height: 60px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.client-carousel img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes client-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Client logo grid */
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.logo-grid img {
+  max-height: 70px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.9;
+}

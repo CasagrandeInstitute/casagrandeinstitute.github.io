@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Casagrande Institute for Higher Education Effectiveness</title>
+<link>https://casagrandeinstitute.github.io/blog.html</link>
+<atom:link href="https://casagrandeinstitute.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.5.47</generator>
+<lastBuildDate>Sat, 01 Feb 2025 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Fair Faculty Compensation: Advancing Mission through Balance and Collaboration</title>
+  <link>https://casagrandeinstitute.github.io/posts/fair-faculty-compensation.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Faculty compensation decisions often carry several overlapping responsibilities:</p>
+<ul>
+<li>Sustain the institution’s financial health<br>
+</li>
+<li>Maintain competitiveness in relevant labor markets<br>
+</li>
+<li>Address internal equity and historical compression<br>
+</li>
+<li>Reflect commitments to mission and justice</li>
+</ul>
+<p>A practical framework treats <em>affordability</em>, <em>equity</em>, <em>competitiveness</em>, and <em>justice</em> as distinct but related principles. Clear articulation of these principles helps leaders explain why certain trade-offs make sense in a given context, and invites faculty into a more transparent conversation.</p>
+<p>Future posts will highlight examples of task-force processes, communication strategies, and structural design choices that support this balance.</p>
+
+
+
+ ]]></description>
+  <category>Faculty compensation</category>
+  <category>Governance</category>
+  <guid>https://casagrandeinstitute.github.io/posts/fair-faculty-compensation.html</guid>
+  <pubDate>Sat, 01 Feb 2025 06:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

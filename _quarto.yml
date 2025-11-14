@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Casagrande Institute for Higher Education Effectiveness"
+  site-url: "https://casagrandeinstitute.github.io"
+  navbar:
+    logo: images/casagrande_institute_logo.png    # adjust or remove if needed
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Services"
+        href: services.qmd
+      - text: "Clients"
+        href: clients.qmd
+      - text: "Team"
+        href: team.qmd
+      - text: "Blog"
+        href: blog.qmd
+    right:
+      - text: "Contact"
+        href: contact.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
