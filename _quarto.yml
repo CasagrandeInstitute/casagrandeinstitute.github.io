@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Casagrande Institute for Higher Education Effectiveness"
+  title: "Casagrande Institute"
   site-url: "https://casagrandeinstitute.github.io"
   navbar:
     logo: images/casagrande_institute_logo.png

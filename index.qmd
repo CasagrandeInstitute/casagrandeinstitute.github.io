@@ -1,5 +1,5 @@
 ---
-title: "Casagrande Institute for Higher Education Effectiveness"
+title: "Casagrande Institute"
 ---
 
 ![](images/casagrande_institute_logo.png){fig-align="center" width="300px"}
