@@ -69,8 +69,8 @@
     .whats-new li:nth-child(3)::before { background: var(--blue-1); box-shadow: 0 0 0 3px var(--blue-3); }
     .whats-new li:nth-child(4)::before { background: var(--navy-2); box-shadow: 0 0 0 3px var(--navy-3); }
 
-    .contact { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--navy-1); border-radius: 4px; padding: 24px 26px; text-align: center; }
-    .contact img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 4px solid var(--navy-3); display: block; margin: 0 auto 12px; }
+    .contact { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--navy-1); border-radius: 4px; padding: 24px 26px; }
+    .contact img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 4px solid var(--navy-3); display: block; margin: 0 0 12px; }
     .contact .name { font-weight: bold; color: var(--navy-1); font-size: 17px; margin: 0; }
     .contact .role { color: var(--navy-2); font-size: 14px; margin: 2px 0 16px; }
     .btn {
@@ -84,7 +84,8 @@
     .contact .aside { font-size: 13px; color: #4b5a62; margin: 14px 0 0; }
     .contact .aside a { word-break: break-all; }
 
-    footer { border-top: 1px solid var(--silver-2); padding: 18px 16px 28px; font-size: 13px; color: #4b5a62; text-align: center; }
+    footer { border-top: 1px solid var(--silver-2); padding: 18px 16px 28px; font-size: 13px; color: #4b5a62; }
+    footer .inner { max-width: 960px; margin: 0 auto; }
     footer a { color: var(--navy-1); }
     [hidden] { display: none !important; }
   </style>
@@ -96,14 +97,14 @@
       <a href="https://www.viterbo.edu/casagrande" aria-label="Casagrande Institute">
         <img src="/assets/Casagrande_Institute_Logo_Horiz_A.svg" alt="Casagrande Institute">
       </a>
-      <span class="wordmark">HEIDI &middot; Higher Education Institutional Dashboard Intelligence</span>
+      <span class="wordmark">HEIDI &middot; Higher Education Institutional Data Interface</span>
     </div>
   </header>
 
   <!-- Superseded HEIDI dashboard (filled in by the script below) -->
   <section class="band" id="heidi-band" hidden>
     <div class="inner">
-      <span class="kicker">HEIDI dashboard</span>
+      <span class="kicker">HEIDI &middot; Higher Education Institutional Data Interface</span>
       <h1>This dashboard has <span class="accent">graduated.</span></h1>
       <p class="lede" id="heidi-lede">The HEIDI dashboard you followed a link to has been superseded by a newer edition.</p>
       <div class="ribbon"><span>You were looking for</span><code id="heidi-file"></code></div>
@@ -126,12 +127,12 @@
         <div class="card" id="heidi-card" hidden>
           <h2>Why the old link stopped working</h2>
           <p>Every HEIDI dashboard carries the date it was built in its address, and each edition stays put until a newer one replaces it. The edition you were looking for has been retired, which usually means one of two things: the data behind it have been refreshed, or the comparison groups were revised with the institution.</p>
-          <p>Either way, the current edition is better than the one you remember. Since this version was built, HEIDI has gained:</p>
+          <p>Either way, HEIDI has kept moving since this edition was built, and today's dashboards offer:</p>
           <ul class="whats-new">
-            <li><strong>Fresher IPEDS data</strong>, with sample sizes beside every group statistic and the comparability notes that public and for-profit peers call for.</li>
-            <li><strong>A Faculty tab</strong> that sets your faculty body and salaries by rank beside the comparison groups, year over year.</li>
-            <li><strong>Cost of Labor</strong>, so salary comparisons account for where your comparison institutions actually hire.</li>
-            <li><strong>Group Mode</strong>, a dashboard for a whole cohort or association rather than a single institution.</li>
+            <li><strong>The most recent IPEDS data available</strong>, carried through every table and trend.</li>
+            <li><strong>Comparison groups you can read at a glance</strong>, with the number of institutions behind every group statistic shown right beside it.</li>
+            <li><strong>Clearer positioning</strong>, with percentiles, percent of the group median, and a spread strip showing where your institution sits within each group.</li>
+            <li><strong>A redesigned Faculty tab</strong> that sets your faculty body and salaries by rank directly beside the comparison groups, year over year.</li>
           </ul>
           <p>Send me a note and I will point you to the current edition, or build an updated one if the data have moved on.</p>
         </div>
@@ -156,7 +157,9 @@
   </main>
 
   <footer>
+    <div class="inner">
     HEIDI is produced by the <a href="https://www.viterbo.edu/casagrande">Casagrande Institute</a> at Viterbo University. Dashboards are shared with the institutions they describe.
+    </div>
   </footer>
 
   <script>
