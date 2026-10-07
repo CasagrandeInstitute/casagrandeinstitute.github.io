@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="David J. Bauer, Ph.D.">
+  <meta name="description" content="The HEIDI dashboard at this address has been superseded by a newer edition. The current version is a short note away.">
+  <title>This dashboard has graduated | Casagrande Institute</title>
+  <!-- Served by GitHub Pages for any missing URL on this site (dashboards live under /HEIDI/),
+       so every asset path is absolute. Brand palette and type follow HEART's scripts/palette.R. -->
+  <link rel="icon" type="image/svg+xml" href="/assets/CI_favicon.svg">
+  <style>
+    :root {
+      --navy-1: #01344B; --navy-2: #809AA5; --navy-3: #E5EBED;
+      --red-1: #EE3139;  --red-3: #FDEAEB;
+      --blue-1: #67D4EC; --blue-3: #F0FBFD;
+      --sunrise-1: #F1AA1E; --sunrise-2: #F9DDA5; --sunrise-3: #FEF7E9;
+      --silver-1: #A3ADB4; --silver-2: #D1D6DA; --silver-3: #F6F7F8;
+      --ink: #1f2a30;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--silver-3);
+      line-height: 1.5; -webkit-text-size-adjust: 100%;
+    }
+    a { color: var(--navy-1); }
+    a:hover { color: var(--red-1); }
+
+    .masthead {
+      background: #fff; border-bottom: 4px solid var(--navy-1);
+      padding: 18px 16px;
+    }
+    .masthead .inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .masthead img { height: 54px; width: auto; display: block; }
+    .masthead .wordmark { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); font-weight: bold; }
+
+    .band {
+      background: var(--navy-1); color: #fff; padding: 44px 16px 40px;
+      background-image: linear-gradient(90deg, var(--navy-1) 0 70%, #053f5a 100%);
+    }
+    .band .inner { max-width: 960px; margin: 0 auto; }
+    .kicker { display: inline-block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--sunrise-1); font-weight: bold; margin-bottom: 10px; }
+    .band h1 { font-size: 36px; line-height: 1.15; margin: 0 0 14px; font-weight: bold; }
+    .band h1 .accent { color: var(--sunrise-1); }
+    .band .lede { font-size: 19px; max-width: 46em; margin: 0 0 18px; color: #e9f0f3; }
+    .ribbon {
+      display: inline-flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      background: rgba(255,255,255,.08); border-left: 4px solid var(--sunrise-1);
+      padding: 10px 14px; border-radius: 3px; font-size: 14px; color: #e9f0f3;
+    }
+    .ribbon code { font-family: Consolas, "Courier New", monospace; font-size: 13px; color: #fff; word-break: break-all; }
+
+    main { max-width: 960px; margin: 0 auto; padding: 36px 16px 48px; }
+    .grid { display: grid; grid-template-columns: 3fr 2fr; gap: 28px; align-items: start; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .band h1 { font-size: 28px; } .band .lede { font-size: 17px; } }
+
+    .card { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--sunrise-1); border-radius: 4px; padding: 24px 26px; }
+    .card h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); margin: 0 0 14px; font-weight: bold; }
+    .card p { margin: 0 0 12px; }
+    .whats-new { list-style: none; margin: 0 0 6px; padding: 0; }
+    .whats-new li { position: relative; padding-left: 28px; margin-bottom: 11px; }
+    .whats-new li::before {
+      content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 50%;
+      background: var(--sunrise-1); box-shadow: 0 0 0 3px var(--sunrise-3);
+    }
+    .whats-new li:nth-child(2)::before { background: var(--red-1); box-shadow: 0 0 0 3px var(--red-3); }
+    .whats-new li:nth-child(3)::before { background: var(--blue-1); box-shadow: 0 0 0 3px var(--blue-3); }
+    .whats-new li:nth-child(4)::before { background: var(--navy-2); box-shadow: 0 0 0 3px var(--navy-3); }
+
+    .contact { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--navy-1); border-radius: 4px; padding: 24px 26px; text-align: center; }
+    .contact img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 4px solid var(--navy-3); display: block; margin: 0 auto 12px; }
+    .contact .name { font-weight: bold; color: var(--navy-1); font-size: 17px; margin: 0; }
+    .contact .role { color: var(--navy-2); font-size: 14px; margin: 2px 0 16px; }
+    .btn {
+      display: block; text-decoration: none; font-weight: bold; font-size: 15px; padding: 11px 16px; border-radius: 4px;
+      margin: 0 0 10px; border: 2px solid var(--navy-1); transition: background .15s, color .15s;
+    }
+    .btn-primary { background: var(--navy-1); color: #fff; }
+    .btn-primary:hover { background: var(--red-1); border-color: var(--red-1); color: #fff; }
+    .btn-secondary { background: #fff; color: var(--navy-1); }
+    .btn-secondary:hover { background: var(--navy-3); color: var(--navy-1); }
+    .contact .aside { font-size: 13px; color: #4b5a62; margin: 14px 0 0; }
+    .contact .aside a { word-break: break-all; }
+
+    footer { border-top: 1px solid var(--silver-2); padding: 18px 16px 28px; font-size: 13px; color: #4b5a62; text-align: center; }
+    footer a { color: var(--navy-1); }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="inner">
+      <a href="https://www.viterbo.edu/casagrande" aria-label="Casagrande Institute">
+        <img src="/assets/Casagrande_Institute_Logo_Horiz_A.svg" alt="Casagrande Institute">
+      </a>
+      <span class="wordmark">HEIDI &middot; Higher Education Institutional Dashboard Intelligence</span>
+    </div>
+  </header>
+
+  <!-- Superseded HEIDI dashboard (filled in by the script below) -->
+  <section class="band" id="heidi-band" hidden>
+    <div class="inner">
+      <span class="kicker">HEIDI dashboard</span>
+      <h1>This dashboard has <span class="accent">graduated.</span></h1>
+      <p class="lede" id="heidi-lede">The HEIDI dashboard you followed a link to has been superseded by a newer edition.</p>
+      <div class="ribbon"><span>You were looking for</span><code id="heidi-file"></code></div>
+    </div>
+  </section>
+
+  <!-- Any other missing page -->
+  <section class="band" id="generic-band" hidden>
+    <div class="inner">
+      <span class="kicker">Page not found</span>
+      <h1>Well, this is <span class="accent">awkward.</span></h1>
+      <p class="lede">There is no page at this address. It may have moved, or the link may have a typo in it.</p>
+      <div class="ribbon"><span>You asked for</span><code id="generic-path"></code></div>
+    </div>
+  </section>
+
+  <main>
+    <div class="grid">
+      <div>
+        <div class="card" id="heidi-card" hidden>
+          <h2>Why the old link stopped working</h2>
+          <p>Every HEIDI dashboard carries the date it was built in its address, and each edition stays put until a newer one replaces it. The edition you were looking for has been retired, which usually means one of two things: the data behind it have been refreshed, or the comparison groups were revised with the institution.</p>
+          <p>Either way, the current edition is better than the one you remember. Since this version was built, HEIDI has gained:</p>
+          <ul class="whats-new">
+            <li><strong>Fresher IPEDS data</strong>, with sample sizes beside every group statistic and the comparability notes that public and for-profit peers call for.</li>
+            <li><strong>A Faculty tab</strong> that sets your faculty body and salaries by rank beside the comparison groups, year over year.</li>
+            <li><strong>Cost of Labor</strong>, so salary comparisons account for where your comparison institutions actually hire.</li>
+            <li><strong>Group Mode</strong>, a dashboard for a whole cohort or association rather than a single institution.</li>
+          </ul>
+          <p>Send me a note and I will point you to the current edition, or build an updated one if the data have moved on.</p>
+        </div>
+
+        <div class="card" id="generic-card" hidden>
+          <h2>Where you might have been headed</h2>
+          <p>This site hosts the HEIDI dashboards and other data products the Casagrande Institute shares with partner institutions. Dashboards live under <code>/HEIDI/</code> and carry the date they were built in their address.</p>
+          <p>If you were hunting for a dashboard, I am happy to send you the current edition. Otherwise, the Casagrande Institute's home page at Viterbo University is the best place to start.</p>
+          <p><a href="https://www.viterbo.edu/casagrande">Visit the Casagrande Institute &rarr;</a></p>
+        </div>
+      </div>
+
+      <aside class="contact">
+        <img src="/assets/David_J_Bauer_headshot.jpg" alt="David J. Bauer">
+        <p class="name">David J. Bauer, Ph.D.</p>
+        <p class="role">Casagrande Institute, Viterbo University</p>
+        <a class="btn btn-primary" id="heidi-mail" href="mailto:djbauer@viterbo.edu?subject=Updated%20HEIDI%20dashboard%20request">Request the current dashboard</a>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/davidjbauer">Connect on LinkedIn</a>
+        <p class="aside">Or write directly: <a href="mailto:djbauer@viterbo.edu">djbauer@viterbo.edu</a></p>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    HEIDI is produced by the <a href="https://www.viterbo.edu/casagrande">Casagrande Institute</a> at Viterbo University. Dashboards are shared with the institutions they describe.
+  </footer>
+
+  <script>
+  (function () {
+    // Nickname (as used in dashboard filenames) -> institution name. Unknown nicknames
+    // fall back to the nickname with underscores turned into spaces.
+    var NAMES = {
+      "ACCU_Faculty_Comp": "ACCU Faculty Compensation",
+      "ACHE": "Arkansas Colleges of Health Education",
+      "CCE": "Council on Chiropractic Education",
+      "Chiropractic_Institutions": "Chiropractic Institutions",
+      "Council_on_Chiropractic_Education": "Council on Chiropractic Education",
+      "Albertus_Magnus": "Albertus Magnus College",
+      "Bay_Path": "Bay Path University", "BPU": "Bay Path University",
+      "Bellarmine": "Bellarmine University",
+      "Berea": "Berea College",
+      "CBU": "Christian Brothers University",
+      "CCC": "Columbia College Chicago",
+      "Capital": "Capital University",
+      "Clarke": "Clarke University",
+      "Cumberlands": "University of the Cumberlands",
+      "Dayton": "University of Dayton",
+      "Denver_Seminary": "Denver Seminary",
+      "Dordt": "Dordt University",
+      "EMU": "Eastern Mennonite University",
+      "Fisher": "St. John Fisher University",
+      "Gannon": "Gannon University",
+      "Grand_View": "Grand View University",
+      "Hollins": "Hollins University",
+      "Hope": "Hope College",
+      "JCSU": "Johnson C. Smith University",
+      "JU": "Jacksonville University",
+      "Keuka": "Keuka College",
+      "Lenoir-Rhyne": "Lenoir-Rhyne University",
+      "Liberty": "Liberty University",
+      "Luther": "Luther College",
+      "MSMU": "Mount Saint Mary's University",
+      "MSOE": "Milwaukee School of Engineering",
+      "Manchester": "Manchester University",
+      "Marian": "Marian University",
+      "Marymount": "Marymount University",
+      "Molloy": "Molloy University",
+      "Mount_Union": "University of Mount Union",
+      "Muhlenberg": "Muhlenberg College",
+      "Muskingum": "Muskingum University",
+      "NDMU": "Notre Dame of Maryland University",
+      "North_Park": "North Park University",
+      "Olin": "Franklin W. Olin College of Engineering",
+      "Oregon_Tech": "Oregon Institute of Technology",
+      "RMU": "Robert Morris University",
+      "Redlands": "University of Redlands",
+      "Rider": "Rider University",
+      "STU": "St. Thomas University",
+      "Saint_Vincent": "Saint Vincent College",
+      "Siena": "Siena University",
+      "Spring_Arbor": "Spring Arbor University",
+      "Springfield": "Springfield College",
+      "St._Bonaventure": "St. Bonaventure University",
+      "TLU": "Texas Lutheran University",
+      "Trine": "Trine University",
+      "Trinity": "Trinity College",
+      "UIW": "University of the Incarnate Word",
+      "UP": "University of Portland",
+      "USF": "University of Sioux Falls",
+      "UST": "University of St. Thomas",
+      "UWA": "University of West Alabama",
+      "Vanguard": "Vanguard University of Southern California",
+      "Viterbo": "Viterbo University",
+      "Webster": "Webster University"
+    };
+    var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    // ?path=/HEIDI/HEIDI_X_YYYYMMDD.html lets the page be previewed locally; GitHub Pages
+    // serves it at the missing URL itself, so location.pathname is what matters live.
+    var qs = new URLSearchParams(window.location.search);
+    var path = qs.get("path") || window.location.pathname || "/";
+    var file = decodeURIComponent(path.split("/").pop() || "");
+    var m = /^HEIDI_(Group_)?(.+?)_(\d{4})(\d{2})(\d{2})\.html?$/i.exec(file);
+
+    function show(id) { document.getElementById(id).hidden = false; }
+    function text(id, s) { document.getElementById(id).textContent = s; }
+
+    if (m) {
+      var isGroup = !!m[1];
+      var nick = m[2];
+      var name = NAMES[nick] || nick.replace(/_+/g, " ");
+      var year = +m[3], mon = +m[4] - 1;
+      var when = (mon >= 0 && mon < 12) ? MONTHS[mon] + " " + year : String(year);
+      var what = isGroup ? "the " + name + " HEIDI group dashboard" : "the " + name + " HEIDI dashboard";
+      text("heidi-lede", "You followed a link to " + what + " from " + when + ". That edition has been superseded.");
+      text("heidi-file", file);
+      document.title = name + " HEIDI dashboard has graduated | Casagrande Institute";
+      var subject = "Current HEIDI dashboard for " + name + " (was " + file + ")";
+      var body = "Hi David,\n\nI followed a link to " + file + " and would like the current HEIDI dashboard for " + name + ".\n\n";
+      document.getElementById("heidi-mail").href =
+        "mailto:djbauer@viterbo.edu?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      show("heidi-band"); show("heidi-card");
+    } else {
+      text("generic-path", path);
+      document.getElementById("heidi-mail").textContent = "Ask about a dashboard";
+      show("generic-band"); show("generic-card");
+    }
+  })();
+  </script>
+</body>
+</html>
