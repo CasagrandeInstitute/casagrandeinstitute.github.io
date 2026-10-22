@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="David J. Bauer, Ph.D.">
+  <meta name="description" content="How HEIDI measures whether two institutions graduate students from similar programs: the cosine similarity of program mix, with a worked example, an interactive demo and a guide to reading the scores.">
+  <title>Reading Program-Mix Similarity | HEIDI Methods | Casagrande Institute</title>
+  <!-- Linked from the Completions tab of every HEIDI dashboard (Comparison and Similar Peers views).
+       Asset paths are absolute because this page lives under /HEIDI/methods/. Brand palette and type
+       follow HEART's scripts/palette.R. Source of truth: HEART/cosine_similarity_explainer.html. -->
+  <link rel="icon" type="image/svg+xml" href="/assets/CI_favicon.svg">
+  <style>
+    :root {
+      --navy-1: #01344B; --navy-2: #809AA5; --navy-3: #E5EBED;
+      --red-1: #EE3139;  --red-3: #FDEAEB;
+      --blue-1: #67D4EC; --blue-3: #F0FBFD;
+      --sunrise-1: #F1AA1E; --sunrise-2: #F9DDA5; --sunrise-3: #FEF7E9;
+      --silver-1: #A3ADB4; --silver-2: #D1D6DA; --silver-3: #F6F7F8;
+      --gold-1: #A07500; --ink: #1f2a30;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--silver-3); line-height: 1.55; -webkit-text-size-adjust: 100%; }
+    a { color: var(--navy-1); }
+    a:hover { color: var(--red-1); }
+
+    .masthead { background: #fff; border-bottom: 4px solid var(--navy-1); padding: 18px 16px; }
+    .masthead .inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .masthead img { height: 54px; width: auto; display: block; }
+    .masthead .wordmark { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); font-weight: bold; }
+
+    .band { background: var(--navy-1); color: #fff; padding: 40px 16px 36px; background-image: linear-gradient(90deg, var(--navy-1) 0 70%, #053f5a 100%); }
+    .band .inner { max-width: 960px; margin: 0 auto; }
+    .kicker { display: inline-block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--sunrise-1); font-weight: bold; margin-bottom: 10px; }
+    .band h1 { font-size: 34px; line-height: 1.15; margin: 0 0 14px; font-weight: bold; }
+    .band .lede { font-size: 18px; max-width: 46em; margin: 0; color: #e9f0f3; }
+
+    main { max-width: 960px; margin: 0 auto; padding: 32px 16px 48px; }
+    .card { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--sunrise-1); border-radius: 4px; padding: 24px 26px; margin-bottom: 22px; }
+    .card h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); margin: 0 0 14px; font-weight: bold; }
+    .card h3 { font-size: 17px; color: var(--navy-1); margin: 18px 0 8px; }
+    .card p { margin: 0 0 12px; }
+    .card p:last-child { margin-bottom: 0; }
+    .callout { background: var(--sunrise-3); border-left: 4px solid var(--sunrise-1); padding: 12px 16px; margin: 14px 0; border-radius: 0 6px 6px 0; font-size: 15px; }
+    .callout strong { color: var(--gold-1); }
+
+    .formula-box { background: var(--navy-3); border: 1px solid var(--navy-2); border-radius: 6px; padding: 14px 18px; margin: 14px 0; text-align: center; }
+    .formula-box .formula { font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 19px; letter-spacing: .02em; color: var(--navy-1); }
+    .formula-box .formula-note { font-size: 13px; color: var(--navy-2); margin-top: 6px; }
+    .worked { text-align: left; font-size: 15px; line-height: 1.7; }
+
+    .bars-header { display: flex; margin-bottom: 6px; font-size: 12px; font-weight: bold; color: var(--navy-2); text-transform: uppercase; letter-spacing: .04em; }
+    .bar-row { display: flex; align-items: center; margin-bottom: 3px; font-size: 14px; }
+    .bar-label { width: 130px; text-align: right; padding-right: 8px; font-weight: 500; white-space: nowrap; }
+    .bar-track { flex: 1; height: 18px; background: var(--silver-3); border-radius: 3px; overflow: hidden; }
+    .bar-fill { display: block; height: 100%; border-radius: 3px; }
+    .bar-pct { width: 45px; text-align: right; font-size: 13px; color: var(--navy-2); padding-left: 6px; }
+    .inst-tag { font-size: 12px; font-weight: bold; letter-spacing: .06em; margin: 10px 0 4px; }
+
+    .viz-container { text-align: center; margin: 10px 0; }
+    .viz-caption { font-size: 13px; color: var(--navy-2); margin-top: 4px; }
+    svg text { font-family: Arial, Helvetica, sans-serif; }
+
+    .scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 14px 0 6px; }
+    .scale .step { border: 1px solid var(--silver-2); border-radius: 6px; padding: 12px; background: #fff; text-align: center; }
+    .scale .step .range { font-size: 20px; font-weight: bold; margin: 4px 0; }
+    .scale .step .name { font-size: 14px; font-weight: bold; color: var(--navy-1); }
+    .scale .step .freq { font-size: 13px; color: var(--navy-2); }
+    .scale .step .desc { font-size: 13px; color: var(--ink); margin-top: 6px; }
+    @media (max-width: 720px) { .scale { grid-template-columns: 1fr 1fr; } .band h1 { font-size: 27px; } .band .lede { font-size: 16px; } }
+
+    .interactive { background: var(--silver-3); border: 1px solid var(--silver-2); border-radius: 8px; padding: 18px 20px; margin: 14px 0; }
+    .slider-group { display: grid; grid-template-columns: 140px 1fr 50px; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .slider-group label { font-size: 14px; }
+    .slider-group input[type="range"] { width: 100%; accent-color: var(--navy-1); }
+    .slider-group .val { font-size: 13px; text-align: right; font-weight: bold; color: var(--navy-2); }
+    .inst-label { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: .05em; margin: 12px 0 4px; padding-top: 8px; border-top: 1px dashed var(--silver-2); }
+    .inst-label:first-of-type { border-top: none; padding-top: 0; margin-top: 4px; }
+    .result-display { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 14px; padding: 14px; background: #fff; border-radius: 6px; border: 1px solid var(--silver-2); }
+    .similarity-score { font-size: 38px; font-weight: bold; color: var(--navy-1); font-variant-numeric: tabular-nums; text-align: center; }
+    .score-label { font-size: 13px; color: var(--navy-2); text-align: center; }
+    .angle-display { font-size: 18px; font-weight: bold; color: var(--navy-2); text-align: center; }
+    .band-label { font-size: 14px; font-weight: bold; text-align: center; }
+
+    ul { margin: 0 0 12px 20px; padding: 0; }
+    li { margin-bottom: 6px; }
+    footer { max-width: 960px; margin: 0 auto; padding: 0 16px 36px; font-size: 13px; color: var(--navy-2); }
+    footer a { color: var(--navy-2); }
+  </style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <a href="https://www.viterbo.edu/casagrande" aria-label="Casagrande Institute">
+      <img src="/assets/Casagrande_Institute_Logo_Horiz_A.svg" alt="Casagrande Institute">
+    </a>
+    <div class="wordmark">HEIDI &middot; Methods</div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="inner">
+    <span class="kicker">Reading the Completions tab</span>
+    <h1>How HEIDI measures program-mix similarity</h1>
+    <p class="lede">The Comparison and Similar Peers views score how closely two institutions' degree programs match. This page explains the score in plain terms, shows what it does and does not measure, and gives a calibrated guide to reading it.</p>
+  </div>
+</section>
+
+<main>
+
+  <div class="card">
+    <h2>The core idea</h2>
+    <p>Every institution graduates students from a particular mix of programs. One college might award 40% of its degrees in business and 30% in nursing; another might award half of its degrees in engineering. HEIDI describes each institution by that mix: the share of its degree completions in each program, using the federal CIP taxonomy at the 4-digit level (which groups related majors, so all registered nursing degrees count as one program).</p>
+    <p>The <strong>similarity score</strong> compares two institutions' mixes and returns a single number between 0 and 1. A score of 1 means the two award degrees in exactly the same proportions. A score of 0 means they have no programs in common. In between, the score rises as the mixes overlap more.</p>
+    <div class="callout"><strong>The score measures the shape of the mix, not its size.</strong> A university graduating 5,000 students a year and a college graduating 200 can score 1.0 against each other if their degrees are spread across programs in the same proportions. Size, selectivity, quality and location are not part of the score; the dashboard's other tabs cover those.</div>
+  </div>
+
+  <div class="card">
+    <h2>A worked example</h2>
+    <p>Suppose two colleges award degrees in five programs:</p>
+    <div class="bars-header"><span style="width:130px;text-align:right;padding-right:8px;">Program</span><span style="flex:1;padding-left:4px;">Share of degrees</span></div>
+    <div class="inst-tag" style="color:var(--navy-1);">COLLEGE A</div>
+    <div class="bar-row"><span class="bar-label">Business</span><span class="bar-track"><span class="bar-fill" style="width:40%;background:var(--navy-1);"></span></span><span class="bar-pct">40%</span></div>
+    <div class="bar-row"><span class="bar-label">Nursing</span><span class="bar-track"><span class="bar-fill" style="width:30%;background:var(--navy-1);"></span></span><span class="bar-pct">30%</span></div>
+    <div class="bar-row"><span class="bar-label">Education</span><span class="bar-track"><span class="bar-fill" style="width:20%;background:var(--navy-1);"></span></span><span class="bar-pct">20%</span></div>
+    <div class="bar-row"><span class="bar-label">Biology</span><span class="bar-track"><span class="bar-fill" style="width:10%;background:var(--navy-1);"></span></span><span class="bar-pct">10%</span></div>
+    <div class="bar-row"><span class="bar-label">Engineering</span><span class="bar-track"><span class="bar-fill" style="width:0%;background:var(--navy-1);"></span></span><span class="bar-pct">0%</span></div>
+    <div class="inst-tag" style="color:var(--red-1);">COLLEGE B</div>
+    <div class="bar-row"><span class="bar-label">Business</span><span class="bar-track"><span class="bar-fill" style="width:35%;background:var(--red-1);"></span></span><span class="bar-pct">35%</span></div>
+    <div class="bar-row"><span class="bar-label">Nursing</span><span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--red-1);"></span></span><span class="bar-pct">25%</span></div>
+    <div class="bar-row"><span class="bar-label">Education</span><span class="bar-track"><span class="bar-fill" style="width:25%;background:var(--red-1);"></span></span><span class="bar-pct">25%</span></div>
+    <div class="bar-row"><span class="bar-label">Biology</span><span class="bar-track"><span class="bar-fill" style="width:15%;background:var(--red-1);"></span></span><span class="bar-pct">15%</span></div>
+    <div class="bar-row"><span class="bar-label">Engineering</span><span class="bar-track"><span class="bar-fill" style="width:0%;background:var(--red-1);"></span></span><span class="bar-pct">0%</span></div>
+    <p style="margin-top:12px;">Picture each college's shares as an arrow: one dimension per program, and the arrow points further along a dimension the larger that program's share. Two colleges with the same proportions point the same way. The score is the <strong>cosine of the angle between the two arrows</strong>: 1 when they point the same way, 0 when they are at right angles (no programs in common).</p>
+    <div class="viz-container">
+      <svg id="angle-viz" width="420" height="250" viewBox="0 0 420 250" role="img" aria-label="Two arrows from a common origin with the angle between them marked">
+        <line x1="60" y1="215" x2="390" y2="215" stroke="#D1D6DA" stroke-width="1"/>
+        <line x1="60" y1="215" x2="60" y2="18" stroke="#D1D6DA" stroke-width="1"/>
+        <text x="230" y="244" text-anchor="middle" fill="#809AA5" font-size="12">Share in one program</text>
+        <text x="18" y="125" text-anchor="middle" fill="#809AA5" font-size="12" transform="rotate(-90,18,125)">Share in another program</text>
+        <path id="angle-arc" d="" fill="none" stroke="#F1AA1E" stroke-width="2" stroke-dasharray="4,3"/>
+        <text id="angle-text" x="130" y="190" fill="#A07500" font-size="12" font-weight="bold"></text>
+        <line id="vec-a" x1="60" y1="215" x2="340" y2="60" stroke="#01344B" stroke-width="3" marker-end="url(#arrow-navy)"/>
+        <text id="vec-a-label" x="345" y="55" fill="#01344B" font-size="13" font-weight="bold">College A</text>
+        <line id="vec-b" x1="60" y1="215" x2="280" y2="45" stroke="#EE3139" stroke-width="3" marker-end="url(#arrow-red)"/>
+        <text id="vec-b-label" x="285" y="40" fill="#EE3139" font-size="13" font-weight="bold">College B</text>
+        <defs>
+          <marker id="arrow-navy" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#01344B"/></marker>
+          <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#EE3139"/></marker>
+        </defs>
+      </svg>
+      <div class="viz-caption">Two institutions' program mixes drawn as arrows in a simplified two-program space. The angle between them sets the score.</div>
+    </div>
+    <h3>The arithmetic</h3>
+    <div class="formula-box">
+      <div class="formula">similarity(A, B) = (A &middot; B) / (&#8214;A&#8214; &times; &#8214;B&#8214;)</div>
+      <div class="formula-note">A &middot; B adds up, program by program, the product of the two shares. &#8214;A&#8214; is the square root of the sum of A's squared shares.</div>
+    </div>
+    <div class="formula-box worked">
+      <div><strong>Products added up:</strong> (0.40 &times; 0.35) + (0.30 &times; 0.25) + (0.20 &times; 0.25) + (0.10 &times; 0.15) + (0 &times; 0) = <strong>0.280</strong></div>
+      <div><strong>&#8214;A&#8214;:</strong> &radic;(0.40&sup2; + 0.30&sup2; + 0.20&sup2; + 0.10&sup2;) = &radic;0.300 = <strong>0.548</strong></div>
+      <div><strong>&#8214;B&#8214;:</strong> &radic;(0.35&sup2; + 0.25&sup2; + 0.25&sup2; + 0.15&sup2;) = &radic;0.270 = <strong>0.520</strong></div>
+      <div><strong>Score:</strong> 0.280 / (0.548 &times; 0.520) = <strong>0.98</strong></div>
+    </div>
+    <p>A score of 0.98 says the two colleges' mixes are nearly the same: the small differences in proportions barely move the angle. Shares are never negative, so the score always falls between 0 and 1.</p>
+  </div>
+
+  <div class="card">
+    <h2>Reading the score</h2>
+    <p>Real institutions rarely score as high as the two colleges above, because most pairs have little in common. Among private not-for-profit four-year institutions in the United States, the typical pair scores about 0.04; only one pair in six reaches 0.40, one in fourteen reaches 0.60, and one in fifty reaches 0.80. The guide below is calibrated to that distribution.</p>
+    <div class="scale">
+      <div class="step"><div class="name">Closely matched</div><div class="range" style="color:var(--navy-1);">0.80 to 1.00</div><div class="freq">about 1 pair in 50</div><div class="desc">Degrees spread across programs in nearly the same proportions.</div></div>
+      <div class="step"><div class="name">Similar</div><div class="range" style="color:var(--gold-1);">0.60 to 0.80</div><div class="freq">about 1 pair in 14</div><div class="desc">The same major programs, with real differences in emphasis.</div></div>
+      <div class="step"><div class="name">Some overlap</div><div class="range" style="color:var(--sunrise-1);">0.40 to 0.60</div><div class="freq">about 1 pair in 6</div><div class="desc">Several programs in common; the largest programs may differ.</div></div>
+      <div class="step"><div class="name">Little overlap</div><div class="range" style="color:var(--red-1);">below 0.40</div><div class="freq">most pairs</div><div class="desc">Different academic profiles, or one large program that the other lacks.</div></div>
+    </div>
+    <p>Because the score is dominated by the largest programs, an institution with one very large program (nursing or business, say) scores highly against any other institution where that program is also large, whatever else they teach. That is a feature when the question is "who graduates students in the same fields in the same proportions", and a limitation when the question is "who offers the same range of programs". HEIDI reports a second number, <strong>coverage</strong>, for the second question.</p>
+    <div class="callout"><strong>Percentile.</strong> The dashboard shows each score with a percentile: where it falls among the focal institution's scores against every institution of the same control and level. A score at the 95th percentile is more similar than 95% of comparable institutions, whatever its raw value. Comparison groups built on size, mission or region will often sit in the "some overlap" band on the raw score and still rank high on the percentile.</div>
+  </div>
+
+  <div class="card">
+    <h2>Try it</h2>
+    <div class="interactive">
+      <p style="font-size:14px;color:var(--navy-2);margin-bottom:10px;">Move the sliders to change each institution's program shares (they are rescaled to add to 100%). The score, the angle and the reading-guide band update as you go.</p>
+      <div class="inst-label" style="color:var(--navy-1);">Institution 1</div>
+      <div class="slider-group"><label>Business</label><input type="range" min="0" max="100" value="40" data-inst="1" data-prog="0"><span class="val">40%</span></div>
+      <div class="slider-group"><label>Nursing</label><input type="range" min="0" max="100" value="30" data-inst="1" data-prog="1"><span class="val">30%</span></div>
+      <div class="slider-group"><label>Education</label><input type="range" min="0" max="100" value="15" data-inst="1" data-prog="2"><span class="val">15%</span></div>
+      <div class="slider-group"><label>Biology</label><input type="range" min="0" max="100" value="10" data-inst="1" data-prog="3"><span class="val">10%</span></div>
+      <div class="slider-group"><label>Engineering</label><input type="range" min="0" max="100" value="5" data-inst="1" data-prog="4"><span class="val">5%</span></div>
+      <div class="inst-label" style="color:var(--red-1);">Institution 2</div>
+      <div class="slider-group"><label>Business</label><input type="range" min="0" max="100" value="35" data-inst="2" data-prog="0"><span class="val">35%</span></div>
+      <div class="slider-group"><label>Nursing</label><input type="range" min="0" max="100" value="25" data-inst="2" data-prog="1"><span class="val">25%</span></div>
+      <div class="slider-group"><label>Education</label><input type="range" min="0" max="100" value="20" data-inst="2" data-prog="2"><span class="val">20%</span></div>
+      <div class="slider-group"><label>Biology</label><input type="range" min="0" max="100" value="15" data-inst="2" data-prog="3"><span class="val">15%</span></div>
+      <div class="slider-group"><label>Engineering</label><input type="range" min="0" max="100" value="5" data-inst="2" data-prog="4"><span class="val">5%</span></div>
+      <div class="result-display">
+        <div><div class="similarity-score" id="cos-score">0.98</div><div class="score-label">Similarity</div></div>
+        <div><div class="angle-display" id="angle-deg">10&deg;</div><div class="score-label">Angle between the arrows</div></div>
+        <div><div class="band-label" id="band-name">Closely matched</div><div class="score-label">Reading-guide band</div></div>
+      </div>
+    </div>
+    <p>Try giving one institution a large program the other lacks: the score falls quickly, because the arrows swing apart along that dimension. Then try trimming both institutions' smaller programs to zero: the score hardly moves, because small programs contribute little to the angle.</p>
+  </div>
+
+  <div class="card">
+    <h2>Why this score and not a simpler one</h2>
+    <p>The obvious alternative is to subtract one institution's shares from the other's and average the gaps. That treats a difference of five points in a 40% program the same as five points in a 5% program, and it depends on how many programs an institution spreads its degrees across. The cosine score weighs each program by how large it is at both institutions, ignores the roughly 1,500 programs that neither offers (two colleges earn no credit for both lacking petroleum engineering), and is unaffected by how many graduates either institution has. Those three properties are what make it usable across institutions of very different sizes.</p>
+  </div>
+
+  <div class="card">
+    <h2>How HEIDI uses it</h2>
+    <p>HEIDI builds each institution's program mix from the three most recent IPEDS Completions collections: first-major degree completions at the 4-digit CIP level, certificates excluded, added across the three years before shares are taken. It then uses the score in two views of the Completions tab:</p>
+    <ul>
+      <li><strong>Comparison.</strong> For each comparison group on the dashboard, the median similarity of its members to the focal institution, the share of members scoring 0.60 or more, and the three most similar members. Beside it sits <strong>coverage</strong>: the share of the focal institution's degree completions that fall in programs a member also graduates students in, which answers the range-of-programs question the score does not.</li>
+      <li><strong>Similar Peers.</strong> The comparison institutions most like the focal institution, across all the selected groups, and a screened national list limited to institutions of the same control and level and between half and twice the focal institution's total FTE. Every score carries its percentile among the focal institution's scores against comparable institutions.</li>
+    </ul>
+    <h3>What the completions data can and cannot say</h3>
+    <ul>
+      <li>Completions describe graduates, not enrollment or offerings. Each IPEDS collection reports awards conferred in the academic year before its label, and the three-year window reaches further back still.</li>
+      <li>A program launched recently appears in these views only once it has graduates, typically two to four years after launch. The Inventory view of the Completions tab lists programs reported to IPEDS with no graduates yet, which is the earliest the data can show a new program.</li>
+      <li>A program that has closed keeps appearing until its last students finish.</li>
+      <li>Grouping at the 4-digit CIP level means that two institutions can score as closely matched while offering different specialties within the same families.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  Casagrande Institute at Viterbo University &middot; <a href="https://www.viterbo.edu/casagrande">viterbo.edu/casagrande</a> &middot; Questions about HEIDI: <a href="mailto:djbauer@viterbo.edu">djbauer@viterbo.edu</a>. Data: IPEDS Completions survey (C_A), U.S. Department of Education.
+</footer>
+
+<script>
+(function() {
+  var sliders = document.querySelectorAll('input[type="range"]');
+  var scoreEl = document.getElementById('cos-score');
+  var angleEl = document.getElementById('angle-deg');
+  var bandEl  = document.getElementById('band-name');
+  function getRaw(inst) {
+    var vals = [];
+    sliders.forEach(function(s) { if (s.dataset.inst === String(inst)) vals[parseInt(s.dataset.prog, 10)] = parseFloat(s.value); });
+    return vals;
+  }
+  function normalize(raw) { var sum = raw.reduce(function(a, b) { return a + b; }, 0); return sum === 0 ? raw.map(function() { return 0; }) : raw.map(function(v) { return v / sum; }); }
+  function dot(a, b) { return a.reduce(function(s, v, i) { return s + v * b[i]; }, 0); }
+  function norm(a) { return Math.sqrt(a.reduce(function(s, v) { return s + v * v; }, 0)); }
+  function cosine(a, b) { var na = norm(a), nb = norm(b); return (na === 0 || nb === 0) ? 0 : dot(a, b) / (na * nb); }
+  function band(sim) {
+    if (sim >= 0.80) return ['Closely matched', '#01344B'];
+    if (sim >= 0.60) return ['Similar', '#A07500'];
+    if (sim >= 0.40) return ['Some overlap', '#F1AA1E'];
+    return ['Little overlap', '#EE3139'];
+  }
+  function update() {
+    var n1 = normalize(getRaw(1)), n2 = normalize(getRaw(2));
+    sliders.forEach(function(s) {
+      var nrm = s.dataset.inst === '1' ? n1 : n2;
+      s.nextElementSibling.textContent = Math.round(nrm[parseInt(s.dataset.prog, 10)] * 100) + '%';
+    });
+    var sim = cosine(n1, n2);
+    var deg = Math.acos(Math.min(1, Math.max(-1, sim))) * 180 / Math.PI;
+    var b = band(sim);
+    scoreEl.textContent = sim.toFixed(2);
+    scoreEl.style.color = b[1];
+    angleEl.textContent = deg.toFixed(0) + '°';
+    bandEl.textContent = b[0];
+    bandEl.style.color = b[1];
+  }
+  sliders.forEach(function(s) { s.addEventListener('input', update); });
+  update();
+
+  // Static angle diagram.
+  var ox = 60, oy = 215, len = 255, angA = 30 * Math.PI / 180, angB = 50 * Math.PI / 180;
+  var ax = ox + len * Math.cos(angA), ay = oy - len * Math.sin(angA);
+  var bx = ox + len * 0.85 * Math.cos(angB), by = oy - len * 0.85 * Math.sin(angB);
+  var set = function(id, attrs) { var el = document.getElementById(id); Object.keys(attrs).forEach(function(k) { el.setAttribute(k, attrs[k]); }); };
+  set('vec-a', { x2: ax, y2: ay }); set('vec-a-label', { x: ax + 5, y: ay - 5 });
+  set('vec-b', { x2: bx, y2: by }); set('vec-b-label', { x: bx + 5, y: by - 5 });
+  var r = 80;
+  set('angle-arc', { d: 'M' + (ox + r * Math.cos(angA)) + ',' + (oy - r * Math.sin(angA)) + ' A' + r + ',' + r + ' 0 0,0 ' + (ox + r * Math.cos(angB)) + ',' + (oy - r * Math.sin(angB)) });
+  var mid = (angA + angB) / 2;
+  set('angle-text', { x: ox + (r + 14) * Math.cos(mid), y: oy - (r + 14) * Math.sin(mid) });
+  document.getElementById('angle-text').textContent = '20°';
+})();
+</script>
+</body>
+</html>
