@@ -180,6 +180,18 @@
   </div>
 
   <div class="card">
+    <h2>Reading coverage</h2>
+    <p>Coverage asks a different question: how much of the focal institution's degree output could be compared at all? It is the share of the focal institution's degree completions that fall in programs the other institution also graduates students in, so it runs from 0% (no program in common) to 100% (every program the focal institution graduates in is offered there). It is directional: a large comprehensive university covers almost everything a small college does, while the college covers only a sliver of the university. Over every ordered pair of the same 1,588 institutions (2,520,156 pairs) the typical pair scores 14%; about 1 pair in 6 reaches 70%, 1 in 14 reaches 90%, and 1 in 21 is complete. The bands below are set at the same rarities as the similarity bands, so a shade means the same thing in either column of a HEIDI table.</p>
+    <div class="scale">
+      <div class="step"><div class="name">Complete</div><div class="range" style="color:var(--navy-1);">100%</div><div class="freq">about 1 pair in 21</div><div class="desc">Every program the focal institution graduates students in is offered there.</div></div>
+      <div class="step"><div class="name">Nearly complete</div><div class="range" style="color:var(--gold-1);">90% to 100%</div><div class="freq">about 1 pair in 14</div><div class="desc">All but a few small programs are matched.</div></div>
+      <div class="step"><div class="name">Most</div><div class="range" style="color:var(--sunrise-1);">70% to 90%</div><div class="freq">about 1 pair in 6</div><div class="desc">The large programs are matched; some smaller ones are not.</div></div>
+      <div class="step"><div class="name">Partial</div><div class="range" style="color:var(--red-1);">below 70%</div><div class="freq">most pairs</div><div class="desc">A sizeable share of the focal institution's degrees has no counterpart.</div></div>
+    </div>
+    <p>Coverage rewards breadth, not resemblance: among pairs where coverage is 75% or more, the median similarity score is only 0.33. Read the two together. A high score with low coverage is an institution that shares the focal institution's largest program and little else; high coverage with a low score is a broad institution whose emphasis lies elsewhere.</p>
+  </div>
+
+  <div class="card">
     <h2>Try it</h2>
     <div class="interactive">
       <p style="font-size:14px;color:var(--navy-2);margin-bottom:10px;">Move the sliders to change each institution's program shares (they are rescaled to add to 100%). The score, the angle and the reading-guide band update as you go.</p>
@@ -213,13 +225,13 @@
     <h2>How HEIDI uses it</h2>
     <p>HEIDI builds each institution's program mix from the three most recent IPEDS Completions collections: first-major degree completions at the 4-digit CIP level, certificates excluded, added across the three years before shares are taken. It then uses the score in two views of the Completions tab:</p>
     <ul>
-      <li><strong>Program Fit.</strong> For each comparison group on the dashboard, the median similarity of its members to the focal institution, the share of members scoring 0.60 or more, and the three most similar members. Beside it sits <strong>coverage</strong>: the share of the focal institution's degree completions that fall in programs a member also graduates students in, which answers the range-of-programs question the score does not.</li>
+      <li><strong>Program Fit.</strong> For each comparison group on the dashboard, the median similarity of its members to the focal institution and the share of members scoring 0.60 or more, then the median <strong>coverage</strong> and the share of members covering 90% or more, and the three most similar members. The medians are shaded on the bands above, so a shade carries the same rarity in either column.</li>
       <li><strong>Similarity.</strong> A national list of the 50 institutions most like the focal institution, limited to the same control and level and between half and twice its total FTE, and then every member of each comparison group, each with the Carnegie class, size, finances and group membership beside its score so the reader can see why an institution is or is not in a comparison group.</li>
     </ul>
     <h3>What the completions data can and cannot say</h3>
     <ul>
       <li>Completions describe graduates, not enrollment or offerings. Each IPEDS collection reports awards conferred in the academic year before its label, and the three-year window reaches further back still.</li>
-      <li>A program launched recently appears in these views only once it has graduates, typically two to four years after launch. The Inventory view of the Completions tab lists programs reported to IPEDS with no graduates yet, which is the earliest the data can show a new program.</li>
+      <li>A program launched recently appears in these views only once it has graduates, typically two to four years after launch. The New Programs view of the Completions tab lists programs reported to IPEDS with no graduates yet, which is the earliest the data can show a new program.</li>
       <li>A program that has closed keeps appearing until its last students finish.</li>
       <li>Grouping at the 4-digit CIP level means that two institutions can score as closely matched while offering different specialties within the same families.</li>
     </ul>
