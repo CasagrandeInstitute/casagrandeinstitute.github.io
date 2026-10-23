@@ -104,7 +104,7 @@
   <div class="inner">
     <span class="kicker">Reading the Completions tab</span>
     <h1>How HEIDI measures program-mix similarity</h1>
-    <p class="lede">The Comparison and Similar Peers views score how closely two institutions' degree programs match. This page explains the score in plain terms, shows what it does and does not measure, and gives a calibrated guide to reading it.</p>
+    <p class="lede">The Program Fit and Similar Institutions views score how closely two institutions' degree programs match. This page explains the score in plain terms, shows what it does and does not measure, and gives a calibrated guide to reading it.</p>
   </div>
 </section>
 
@@ -169,7 +169,7 @@
 
   <div class="card">
     <h2>Reading the score</h2>
-    <p>Real institutions rarely score as high as the two colleges above, because most pairs have little in common. Among private not-for-profit four-year institutions in the United States, the typical pair scores about 0.04; only one pair in six reaches 0.40, one in fourteen reaches 0.60, and one in fifty reaches 0.80. The guide below is calibrated to that distribution.</p>
+    <p>Real institutions rarely score as high as the two colleges above, because most pairs have little in common. HEIDI scored every pair of the 1,588 private not-for-profit four-year institutions in the United States with degree completions in the 2023-24 to 2025-26 IPEDS collections (1,260,078 pairs): the median pair scores 0.04; 17.1% of pairs reach 0.40, 6.9% reach 0.60, 2.0% reach 0.80 and 0.8% reach 0.95. The guide below is calibrated to that distribution.</p>
     <div class="scale">
       <div class="step"><div class="name">Closely matched</div><div class="range" style="color:var(--navy-1);">0.80 to 1.00</div><div class="freq">about 1 pair in 50</div><div class="desc">Degrees spread across programs in nearly the same proportions.</div></div>
       <div class="step"><div class="name">Similar</div><div class="range" style="color:var(--gold-1);">0.60 to 0.80</div><div class="freq">about 1 pair in 14</div><div class="desc">The same major programs, with real differences in emphasis.</div></div>
@@ -177,7 +177,6 @@
       <div class="step"><div class="name">Little overlap</div><div class="range" style="color:var(--red-1);">below 0.40</div><div class="freq">most pairs</div><div class="desc">Different academic profiles, or one large program that the other lacks.</div></div>
     </div>
     <p>Because the score is dominated by the largest programs, an institution with one very large program (nursing or business, say) scores highly against any other institution where that program is also large, whatever else they teach. That is a feature when the question is "who graduates students in the same fields in the same proportions", and a limitation when the question is "who offers the same range of programs". HEIDI reports a second number, <strong>coverage</strong>, for the second question.</p>
-    <div class="callout"><strong>Percentile.</strong> The dashboard shows each score with a percentile: where it falls among the focal institution's scores against every institution of the same control and level. A score at the 95th percentile is more similar than 95% of comparable institutions, whatever its raw value. Comparison groups built on size, mission or region will often sit in the "some overlap" band on the raw score and still rank high on the percentile.</div>
   </div>
 
   <div class="card">
@@ -214,8 +213,8 @@
     <h2>How HEIDI uses it</h2>
     <p>HEIDI builds each institution's program mix from the three most recent IPEDS Completions collections: first-major degree completions at the 4-digit CIP level, certificates excluded, added across the three years before shares are taken. It then uses the score in two views of the Completions tab:</p>
     <ul>
-      <li><strong>Comparison.</strong> For each comparison group on the dashboard, the median similarity of its members to the focal institution, the share of members scoring 0.60 or more, and the three most similar members. Beside it sits <strong>coverage</strong>: the share of the focal institution's degree completions that fall in programs a member also graduates students in, which answers the range-of-programs question the score does not.</li>
-      <li><strong>Similar Peers.</strong> The comparison institutions most like the focal institution, across all the selected groups, and a screened national list limited to institutions of the same control and level and between half and twice the focal institution's total FTE. Every score carries its percentile among the focal institution's scores against comparable institutions.</li>
+      <li><strong>Program Fit.</strong> For each comparison group on the dashboard, the median similarity of its members to the focal institution, the share of members scoring 0.60 or more, and the three most similar members. Beside it sits <strong>coverage</strong>: the share of the focal institution's degree completions that fall in programs a member also graduates students in, which answers the range-of-programs question the score does not.</li>
+      <li><strong>Most Similar Members and Similar Institutions.</strong> Each comparison group's members ranked by similarity to the focal institution, and a national list limited to institutions of the same control and level and between half and twice the focal institution's total FTE, with the Carnegie class, size, finances and group membership beside each score so the reader can see why an institution is or is not in a comparison group.</li>
     </ul>
     <h3>What the completions data can and cannot say</h3>
     <ul>
