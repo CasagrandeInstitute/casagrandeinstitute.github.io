@@ -21,61 +21,62 @@
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+    /* Follows the HEIDI web dashboard (HEART web/src/heidi.css): system type, square
+       corners, hairline silver borders, navy headings over a navy rule, red marking
+       the current place (as the page nav's underline and the sidebar's left bar do). */
     body {
-      font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--silver-3);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+      color: var(--ink); background: var(--silver-3);
       line-height: 1.5; -webkit-text-size-adjust: 100%;
     }
     a { color: var(--navy-1); }
     a:hover { color: var(--red-1); }
 
     .masthead {
-      background: #fff; border-bottom: 4px solid var(--navy-1);
-      padding: 18px 16px;
+      background: #fff; border-bottom: 1px solid var(--silver-2);
+      padding: 16px 16px;
     }
     .masthead .inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .masthead img { height: 54px; width: auto; display: block; }
-    .masthead .wordmark { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); font-weight: bold; }
+    .masthead img { height: 50px; width: auto; display: block; }
+    .masthead .wordmark { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--navy-2); font-weight: 600; }
 
-    .band {
-      background: var(--navy-1); color: #fff; padding: 44px 16px 40px;
-      background-image: linear-gradient(90deg, var(--navy-1) 0 70%, #053f5a 100%);
-    }
+    .band { background: var(--navy-1); color: #fff; padding: 44px 16px 40px; }
     .band .inner { max-width: 960px; margin: 0 auto; }
-    .kicker { display: inline-block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--sunrise-1); font-weight: bold; margin-bottom: 10px; }
-    .band h1 { font-size: 36px; line-height: 1.15; margin: 0 0 14px; font-weight: bold; }
-    .band h1 .accent { color: var(--sunrise-1); }
-    .band .lede { font-size: 19px; max-width: 46em; margin: 0 0 18px; color: #e9f0f3; }
+    .kicker { display: inline-block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); font-weight: 600; margin-bottom: 12px; }
+    .band h1 { font-size: 36px; line-height: 1.2; margin: 0 0 16px; font-weight: 700; }
+    .band h1 .accent { box-shadow: inset 0 -4px 0 var(--red-1); }
+    .band .lede { font-size: 19px; max-width: 46em; margin: 0 0 18px; color: var(--navy-3); }
     .ribbon {
       display: inline-flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
-      background: rgba(255,255,255,.08); border-left: 4px solid var(--sunrise-1);
-      padding: 10px 14px; border-radius: 3px; font-size: 14px; color: #e9f0f3;
+      background: rgba(255,255,255,.07); border-left: 3px solid var(--red-1);
+      padding: 9px 14px; font-size: 14px; color: var(--navy-3);
     }
-    .ribbon code { font-family: Consolas, "Courier New", monospace; font-size: 13px; color: #fff; word-break: break-all; }
+    .ribbon code { font-family: ui-monospace, Consolas, monospace; font-size: 13px; color: #fff; word-break: break-all; }
 
     main { max-width: 960px; margin: 0 auto; padding: 36px 16px 48px; }
     .grid { display: grid; grid-template-columns: 3fr 2fr; gap: 28px; align-items: start; }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .band h1 { font-size: 28px; } .band .lede { font-size: 17px; } }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .band h1 { font-size: 28px; } .band .lede { font-size: 17px; } .masthead .wordmark { display: none; } }
 
-    .card { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--sunrise-1); border-radius: 4px; padding: 24px 26px; }
-    .card h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--navy-2); margin: 0 0 14px; font-weight: bold; }
+    .card { background: #fff; border: 1px solid var(--silver-2); padding: 22px 26px 24px; }
+    .card h2 {
+      font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy-1); font-weight: 600;
+      margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--navy-1);
+    }
     .card p { margin: 0 0 12px; }
     .whats-new { list-style: none; margin: 0 0 6px; padding: 0; }
-    .whats-new li { position: relative; padding-left: 28px; margin-bottom: 11px; }
+    .whats-new li { position: relative; padding-left: 22px; margin-bottom: 11px; }
     .whats-new li::before {
-      content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 50%;
-      background: var(--sunrise-1); box-shadow: 0 0 0 3px var(--sunrise-3);
+      content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; background: var(--navy-1);
     }
-    .whats-new li:nth-child(2)::before { background: var(--red-1); box-shadow: 0 0 0 3px var(--red-3); }
-    .whats-new li:nth-child(3)::before { background: var(--blue-1); box-shadow: 0 0 0 3px var(--blue-3); }
-    .whats-new li:nth-child(4)::before { background: var(--navy-2); box-shadow: 0 0 0 3px var(--navy-3); }
+    .whats-new strong { color: var(--navy-1); font-weight: 600; }
 
-    .contact { background: #fff; border: 1px solid var(--silver-2); border-top: 4px solid var(--navy-1); border-radius: 4px; padding: 24px 26px; }
-    .contact img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 4px solid var(--navy-3); display: block; margin: 0 0 12px; }
-    .contact .name { font-weight: bold; color: var(--navy-1); font-size: 17px; margin: 0; }
+    .contact { background: #fff; border: 1px solid var(--silver-2); padding: 24px 26px; }
+    .contact img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; box-shadow: 0 1px 3px rgba(1, 52, 75, 0.15); display: block; margin: 0 0 12px; }
+    .contact .name { font-weight: 600; color: var(--navy-1); font-size: 17px; margin: 0; }
     .contact .role { color: var(--navy-2); font-size: 14px; margin: 2px 0 16px; }
     .btn {
-      display: block; text-decoration: none; font-weight: bold; font-size: 15px; padding: 11px 16px; border-radius: 4px;
-      margin: 0 0 10px; border: 2px solid var(--navy-1); transition: background .15s, color .15s;
+      display: block; text-decoration: none; font-weight: 600; font-size: 15px; padding: 10px 16px;
+      margin: 0 0 10px; border: 1px solid var(--navy-1); transition: background .15s, color .15s;
     }
     .btn-primary { background: var(--navy-1); color: #fff; }
     .btn-primary:hover { background: var(--red-1); border-color: var(--red-1); color: #fff; }
@@ -129,10 +130,11 @@
           <p>Every HEIDI dashboard carries the date it was built in its address, and each edition stays put until a newer one replaces it. The edition you were looking for has been retired, which usually means one of two things: the data behind it have been refreshed, or the comparison groups were revised with the institution.</p>
           <p>Either way, HEIDI has kept moving since this edition was built, and today's dashboards offer:</p>
           <ul class="whats-new">
-            <li><strong>The most recent IPEDS data available</strong>, carried through every table and trend.</li>
-            <li><strong>Comparison groups you can read at a glance</strong>, with the number of institutions behind every group statistic shown right beside it.</li>
-            <li><strong>Clearer positioning</strong>, with percentiles, percent of the group median, and a spread strip showing where your institution sits within each group.</li>
-            <li><strong>A redesigned Faculty tab</strong> that sets your faculty body and salaries by rank directly beside the comparison groups, year over year.</li>
+            <li><strong>The newest data</strong> from IPEDS, plus College Scorecard earnings and debt and the 2025 Carnegie Classifications.</li>
+            <li><strong>More to compare against</strong>: financial health ratios, operating margin, admissions, retention, graduation, and earnings after college, each with percentiles, percent of the group median, a spread strip, and the size of the group beside every statistic.</li>
+            <li><strong>A new Portfolio page</strong> showing your degree programs over time, newly launched programs, and how closely each comparison institution's program mix matches yours.</li>
+            <li><strong>Trends in nominal or inflation-adjusted dollars</strong>, and a Faculty page that sets your faculty and salaries by rank beside each comparison group.</li>
+            <li><strong>A built-in Glossary</strong>, with every measure's definition one click from its table or figure.</li>
           </ul>
           <p>Send me a note and I will point you to the current edition, or build an updated one if the data have moved on.</p>
         </div>
@@ -183,9 +185,12 @@
       "Cumberlands": "University of the Cumberlands",
       "Dayton": "University of Dayton",
       "Denver_Seminary": "Denver Seminary",
+      "Dominican": "Dominican University",
       "Dordt": "Dordt University",
+      "Drake": "Drake University",
       "EMU": "Eastern Mennonite University",
       "Fisher": "St. John Fisher University",
+      "FranU": "Franciscan Missionaries of Our Lady University",
       "Gannon": "Gannon University",
       "Grand_View": "Grand View University",
       "Hollins": "Hollins University",
@@ -201,6 +206,7 @@
       "Manchester": "Manchester University",
       "Marian": "Marian University",
       "Marymount": "Marymount University",
+      "Middlebury": "Middlebury College",
       "Molloy": "Molloy University",
       "Mount_Union": "University of Mount Union",
       "Muhlenberg": "Muhlenberg College",
@@ -221,6 +227,7 @@
       "TLU": "Texas Lutheran University",
       "Trine": "Trine University",
       "Trinity": "Trinity College",
+      "Truman": "Truman State University",
       "UIW": "University of the Incarnate Word",
       "UP": "University of Portland",
       "USF": "University of Sioux Falls",
@@ -228,7 +235,8 @@
       "UWA": "University of West Alabama",
       "Vanguard": "Vanguard University of Southern California",
       "Viterbo": "Viterbo University",
-      "Webster": "Webster University"
+      "Webster": "Webster University",
+      "Wittenberg": "Wittenberg University"
     };
     var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
