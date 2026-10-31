@@ -17,6 +17,7 @@
       --blue-1: #67D4EC; --blue-3: #F0FBFD;
       --sunrise-1: #F1AA1E; --sunrise-2: #F9DDA5; --sunrise-3: #FEF7E9;
       --silver-1: #A3ADB4; --silver-2: #D1D6DA; --silver-3: #F6F7F8;
+      --mahogany-1: #693633; --mahogany-3: #F0EBEB;
       --ink: #1f2a30;
     }
     * { box-sizing: border-box; }
@@ -64,10 +65,15 @@
     }
     .card p { margin: 0 0 12px; }
     .whats-new { list-style: none; margin: 0 0 6px; padding: 0; }
-    .whats-new li { position: relative; padding-left: 22px; margin-bottom: 11px; }
+    .whats-new li { position: relative; padding-left: 28px; margin-bottom: 11px; }
     .whats-new li::before {
-      content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; background: var(--navy-1);
+      content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 50%;
+      background: var(--sunrise-1); box-shadow: 0 0 0 3px var(--sunrise-3);
     }
+    .whats-new li:nth-child(2)::before { background: var(--red-1); box-shadow: 0 0 0 3px var(--red-3); }
+    .whats-new li:nth-child(3)::before { background: var(--blue-1); box-shadow: 0 0 0 3px var(--blue-3); }
+    .whats-new li:nth-child(4)::before { background: var(--navy-2); box-shadow: 0 0 0 3px var(--navy-3); }
+    .whats-new li:nth-child(5)::before { background: var(--mahogany-1); box-shadow: 0 0 0 3px var(--mahogany-3); }
     .whats-new strong { color: var(--navy-1); font-weight: 600; }
 
     .contact { background: #fff; border: 1px solid var(--silver-2); padding: 24px 26px; }
@@ -130,10 +136,10 @@
           <p>Every HEIDI dashboard carries the date it was built in its address, and each edition stays put until a newer one replaces it. The edition you were looking for has been retired, which usually means one of two things: the data behind it have been refreshed, or the comparison groups were revised with the institution.</p>
           <p>Either way, HEIDI has kept moving since this edition was built, and today's dashboards offer:</p>
           <ul class="whats-new">
-            <li><strong>The newest data</strong> from IPEDS, plus College Scorecard earnings and debt and the 2025 Carnegie Classifications.</li>
-            <li><strong>More to compare against</strong>: financial health ratios, operating margin, admissions, retention, graduation, and earnings after college, each with percentiles, percent of the group median, a spread strip, and the size of the group beside every statistic.</li>
-            <li><strong>A new Portfolio page</strong> showing your degree programs over time, newly launched programs, and how closely each comparison institution's program mix matches yours.</li>
-            <li><strong>Trends in nominal or inflation-adjusted dollars</strong>, and a Faculty page that sets your faculty and salaries by rank beside each comparison group.</li>
+            <li><strong>The newest data</strong> from IPEDS, the College Scorecard, the Carnegie Classifications, and other sources.</li>
+            <li><strong>More to compare against</strong>: additional measures of finances and financial health, admissions, completions, compensation, and more.</li>
+            <li><strong>A new Portfolio page</strong> tracking your degree and certificate program completions over time, and how closely each comparison group's program mix matches yours.</li>
+            <li><strong>Trends in nominal or inflation-adjusted dollars</strong>, and a Faculty page that sets your faculty body and average salaries by rank beside each comparison group.</li>
             <li><strong>A built-in Glossary</strong>, with every measure's definition one click from its table or figure.</li>
           </ul>
           <p>Send me a note and I will point you to the current edition, or build an updated one if the data have moved on.</p>
